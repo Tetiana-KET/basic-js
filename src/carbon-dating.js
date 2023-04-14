@@ -22,8 +22,14 @@ function dateSample(/* sampleActivity */) {
 //логарифм — это степень, в которую нужно возвести a для получения b
 //периодом полураспада реакции и записывается как t 1 /2 
 //t 1 /2 = 0,693/ k .
+//формула расчета времени 
+// time = ln ( N0 / N ) / k.....
+// N0 это начальное значение полураспада, то есть MODERN_ACTIVITY, 
+// N - это то что есть сейчас, то есть sampleActivity......
+// k рассчитывается по формуле 0,693 / период полураспада HALF_LIFE_PERIOD
+//проверить условия, сделать округление и готово)))))
 
-  if (!(typeof sampleActivity == 'string')) return false;
+  // if (!(typeof sampleActivity == 'string')) return false;
 
  
 }
