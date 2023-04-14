@@ -13,23 +13,14 @@ const { NotImplementedError } = require('../extensions/index.js');
  * calculateDepth method must pass the given array recursively. Depth of a flat array is 1. 
  * Method must correctly work with arrays that contain no elements or contain empty arrays.
  */
-// function list_depth(arr) {
-//   let n = 1;
-//   for (i of arr) {
-//     if (Array.isArray(i)) {
-//       n += list_depth(i);
-//       console.log(n);
-//     }
-//   }
-//   return n
 class DepthCalculator {
   calculateDepth(arr) {
     let depth = 1;
-    for (let item of arr) {
-      if ( Array.isArray(item))  {
-        const newArr = arr.flat();
-        this.calculateDepth(newArr);
-        depth ++
+    for (let i=0; i< arr.length; i++) {
+      if ( Array.isArray(arr[i]))  {
+        arr = arr.flat();
+        depth += this.calculateDepth(arr);
+        return depth;
       }
     }
     return depth;

@@ -37,7 +37,8 @@ function dateSample(sampleActivity) {
   if (!(typeof sampleActivity == 'string') || Number.isNaN(+sampleActivity) || sampleActivity<=0) {
     return false;
   }
-
+  // const N0 = MODERN_ACTIVITY
+  // const time = ln *( MODERN_ACTIVITY / sampleActivity) / (0.693 / HALF_LIFE_PERIOD)
 
  
 }
