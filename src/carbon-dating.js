@@ -34,11 +34,29 @@ function dateSample(sampleActivity) {
   //const MODERN_ACTIVITY = 15;
   //const HALF_LIFE_PERIOD = 5730;
 
-  if (!(typeof sampleActivity == 'string') || Number.isNaN(+sampleActivity) || sampleActivity<=0) {
+  /*const N0 = MODERN_ACTIVITY
+    const time = ln *( MODERN_ACTIVITY / sampleActivity) / (0.693 / HALF_LIFE_PERIOD)
+    ln(x) натуральный логарифм числа, показатель степени в которую нужно возвести число е, чтобы получить х
+    натуральный логарифм ln a-  есть решение уравнения e в степени x = a
+    ln e = 1 потому что е в степени 1 = е
+    ln 1 = 0 потому что е в степени 0 = 1
+    ln(x) = Math.log(x)
+
+    Следующая функция возвращает логарифм из y по основанию x (то есть, logхY):
+    function getBaseLog(x, y) {
+      return Math.log(y) / Math.log(x);
+    }
+  */
+
+  if (!(typeof sampleActivity == 'string') ||
+                     isNaN(sampleActivity) ||//При использовании функции Number.isNaN('NaN'), undefined, 'blabla' - returns false
+                        +sampleActivity<=0 || 
+          +sampleActivity > MODERN_ACTIVITY) {
     return false;
   }
-  // const N0 = MODERN_ACTIVITY
-  // const time = ln *( MODERN_ACTIVITY / sampleActivity) / (0.693 / HALF_LIFE_PERIOD)
+
+  const time = Math.log( MODERN_ACTIVITY / +sampleActivity) / (0.693 / HALF_LIFE_PERIOD);
+  return Math.ceil(time);
 
  
 }
