@@ -20,11 +20,38 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   '.ru.yandex.code': 1,
  *   '.ru.yandex.music': 1,
  * }
- *
+ *  на вход получаем массив, пройтись по массиву перебором и поделить
+ *  каждый домен на массив поддоменов
+ *  вернуть нужно объект
+ *  ключи объекта - каждый кусочек поддомена до точки
+ *  значение ключа - количество вхождений
  */
-function getDNSStats(/* domains */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function getDNSStats(domains) {
+	const result = {};
+	const domainsReversed = domains.map(domain => {
+		return domain.split('.').reverse();
+	});
+	/*
+  [
+  [ru, yandex, code],
+  [ru, yandex, music],
+  [ru, yandex]
+  ]
+  */
+	domainsReversed.forEach(domain => {
+    let dns = '';
+
+		domain.forEach(subDomain => {
+			//[ru, yandex, code],
+			dns += `.${subDomain}`;
+			//.ru
+			//.ru.yandex
+			//.ru.yandex.code
+
+			result[dns] = result[dns] ? result[dns] + 1 : 1;
+		});
+	});
+	return result;
 }
 
 module.exports = {
