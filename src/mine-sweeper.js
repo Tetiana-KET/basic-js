@@ -23,10 +23,74 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
-}
+	function minesweeper(matrix) {
+		const result = [];
+		for (let x = 0; x < matrix.length; x += 1) {
+			result.push([]);
+
+			for (let y = 0; y < matrix[x].length; y += 1) {
+				result[x][y] = 0; // fill every cell with zero
+
+				//top row
+				if (matrix[x - 1] !== undefined) {
+					if (matrix[x - 1][y]) {
+						result[x][y] += 1;
+					}
+				}
+
+				//bottom row
+				if (matrix[x + 1] !== undefined) {
+					if (matrix[x + 1][y]) {
+						result[x][y] += 1;
+					}
+				}
+
+				//right edge
+				if (matrix[x][y + 1] !== undefined) {
+					if (matrix[x][y + 1]) {
+						result[x][y] += 1;
+					}
+				}
+
+				//left edge
+				if (matrix[x][y - 1] !== undefined) {
+					if (matrix[x][y - 1]) {
+						result[x][y] += 1;
+					}
+				}
+
+				//DIAGONAL
+				//top right
+				if (matrix[x - 1] !== undefined) {
+					if (matrix[x - 1][y + 1]) {
+						result[x][y] += 1;
+					}
+				}
+
+				//top left
+				if (matrix[x - 1] !== undefined) {
+					if (matrix[x - 1][y - 1]) {
+						result[x][y] += 1;
+					}
+				}
+        
+				//bottom right
+				if (matrix[x + 1] !== undefined) {
+					if (matrix[x + 1][y + 1]) {
+						result[x][y] += 1;
+					}
+				}
+
+				//bottom left
+				if (matrix[x + 1] !== undefined) {
+					if (matrix[x + 1][y - 1]) {
+						result[x][y] += 1;
+					}
+				}
+			}
+		}
+		return result;
+	}
 
 module.exports = {
   minesweeper
